@@ -10,7 +10,7 @@ const Loisir = sequelize.define('loisir', {
         autoIncrement: true
     },
     loisir_type: {
-        type: DataTypes.ENUM('livre', 'bande_dessine', 'manga', 'comics'),
+        type: DataTypes.ENUM('livre', 'bande_dessine', 'serie', 'manga', 'film'),
         allowNull: false
     },
     loisir_nom: {
@@ -22,11 +22,11 @@ const Loisir = sequelize.define('loisir', {
         allowNull: false
     },
     loisir_note: {
-        type: DataTypes.DOUBLE,
+        type: DataTypes.FLOAT,
         allowNull: false
     },
     loisir_description: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(1000),
         allowNull: false
     },
 

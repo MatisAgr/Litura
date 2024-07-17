@@ -1,27 +1,27 @@
 const Loisir = require ('../model/loisirModel') 
 
-const CreateLoisir = (req, res) => {
+const CreateLoisir = async(req, res) => {
     try {
         const { loisir_type, loisir_nom, loisir_image, loisir_note, loisir_description } = req.body;
-        const newLoisir = Loisir.create({
+        const newLoisir = await Loisir.create({
             loisir_type,
             loisir_nom,
             loisir_image,
             loisir_note,
             loisir_description,
         });
-        res.status(201).json(newLoisir);
+        res.status(200).json(newLoisir);
     }
     catch (error) {
         console.error(error);
   }
 }
   
-  const UpdateLoisir = (req, res) => {
+  const UpdateLoisir = async(req, res) => {
     const { id } = req.params;
     const { loisir_type, loisir_nom, loisir_image, loisir_note, loisir_description } = req.body;
     try {
-        const loisir = Loisir.update({
+        const loisir = await Loisir.update({
             loisir_type,
             loisir_nom,
             loisir_image,
@@ -39,10 +39,10 @@ const CreateLoisir = (req, res) => {
     }
   }
   
-  const DeleteLoisir = (req, res) => {
+  const DeleteLoisir = async(req, res) => {
     const { id } = req.params;
     try {
-        Loisir.destroy({
+         await Loisir.destroy({
             where: {
                 loisir_id: id,
             },
@@ -54,9 +54,9 @@ const CreateLoisir = (req, res) => {
     }
   };
   
-  const AllLoisir = (req, res) => {
+  const AllLoisir = async(req, res) => {
     try {
-        const loisirs = Loisir.findAll();
+        const loisirs = await Loisir.findAll();
         res.status(200).json(loisirs);
     }
     catch (error) {
@@ -64,10 +64,10 @@ const CreateLoisir = (req, res) => {
     }
   };
   
-  const FindLoisir = (req, res) => {
+  const FindLoisir = async (req, res) => {
     const { categorie } = req.params;
     try {
-        const loisirs = Loisir.findAll({
+        const loisirs = await Loisir.findAll({
             where: {
                 loisir_type: categorie,
             },

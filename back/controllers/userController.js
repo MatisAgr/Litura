@@ -1,27 +1,27 @@
 const User = require('../model/userModel')
 
-const CreateUser = (req, res) => {
+const CreateUser = async(req, res) => {
     try {
         const { user_nom, user_prenom, user_email, user_pass, user_type } = req.body;
-        const newUser = User.create({
+        const newUser = await User.create({
             user_nom,
             user_prenom,
             user_email,
             user_pass,
             user_type,
         });
-        res.status(201).json(newUser);
+        res.status(200).json(newUser);
     }
     catch (error) {
         console.error(error);
   }
 }
 
-const UpdateUser = (req, res) => {
+const UpdateUser = async(req, res) => {
     const { id } = req.params;
     const { user_nom, user_prenom, user_email, user_pass, user_type } = req.body;
     try {
-        const user = User.update({
+        const user = await User.update({
             user_nom,
             user_prenom,
             user_email,
@@ -39,10 +39,10 @@ const UpdateUser = (req, res) => {
     }
 }
 
-const DeleteUser = (req, res) => {
+const DeleteUser = async(req, res) => {
     const { id } = req.params;
     try {
-        User.destroy({
+        await User.destroy({
             where: {
                 user_id: id,
             },
@@ -54,9 +54,9 @@ const DeleteUser = (req, res) => {
     }
 };
 
-const AllUser = (req, res) => {
+const AllUser = async(req, res) => {
     try {
-        const users = User.findAll();
+        const users = await User.findAll();
         res.status(200).json(users);
     }
     catch (error) {

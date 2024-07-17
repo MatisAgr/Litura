@@ -47,6 +47,11 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/litura-logo.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -74,17 +79,34 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: FiraSans
+      fonts:
+        - asset: assets/fonts/FiraSans-Regular.ttf
+        - asset: assets/fonts/FiraSans-Bold.ttf
+        - asset: assets/fonts/FiraSans-Italic.ttf
+        - asset: assets/fonts/FiraSans-BoldItalic.ttf
+        - asset: assets/fonts/FiraSans-Light.ttf
+        - asset: assets/fonts/FiraSans-LightItalic.ttf
+        - asset: assets/fonts/FiraSans-Medium.ttf
+        - asset: assets/fonts/FiraSans-MediumItalic.ttf
+        - asset: assets/fonts/FiraSans-SemiBold.ttf
+        - asset: assets/fonts/FiraSans-SemiBoldItalic.ttf
+        - asset: assets/fonts/FiraSans-ExtraBold.ttf
+        - asset: assets/fonts/FiraSans-ExtraBoldItalic.ttf
+        - asset: assets/fonts/FiraSans-ExtraLight.ttf
+        - asset: assets/fonts/FiraSans-ExtraLightItalic.ttf
+        - asset: assets/fonts/FiraSans-Thin.ttf
+        - asset: assets/fonts/FiraSans-ThinItalic.ttf
+        - asset: assets/fonts/FiraSans-Black.ttf
+        - asset: assets/fonts/FiraSans-BlackItalic.ttf
+    - family: Numans
+      fonts:
+        - asset: assets/fonts/Numans-Regular.ttf
+        
+        
+
+        
+  
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

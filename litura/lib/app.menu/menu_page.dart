@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:litura/app.add_art/add_art_page.dart';
+import 'package:litura/app.search_book/search_page.dart';
 import 'package:litura/common_widgets/custom_button.dart';
 
 class MenuPage extends StatelessWidget {
@@ -31,6 +33,10 @@ class MenuPage extends StatelessWidget {
               textColor: Colors.white,
               color: const Color(0xff806491),
               onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchPage()));
               },
               icon: Icons.arrow_forward_ios,
             ),
@@ -40,6 +46,10 @@ class MenuPage extends StatelessWidget {
               textColor: Colors.white,
               color: const Color(0xff806491),
               onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddArtPage()));
               },
               icon: Icons.arrow_forward_ios,
             ),
@@ -48,8 +58,7 @@ class MenuPage extends StatelessWidget {
               text: 'Supprimer',
               textColor: Colors.white,
               color: const Color(0xff806491),
-              onPressed: () {
-              },
+              onPressed: () {},
               icon: Icons.arrow_forward_ios,
             ),
             const SizedBox(height: 24.0),
@@ -57,8 +66,7 @@ class MenuPage extends StatelessWidget {
               text: 'Paramètre',
               textColor: Colors.white,
               color: const Color(0xff806491),
-              onPressed: () {
-              },
+              onPressed: () {},
               icon: Icons.arrow_forward_ios,
             ),
           ],

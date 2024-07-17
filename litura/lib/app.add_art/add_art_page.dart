@@ -20,6 +20,5 @@ class AddArtPage extends StatelessWidget {
         ),
       )
     );
-      
   }
 }

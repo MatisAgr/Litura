@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:litura/app.add_art/add_art_page.dart';
-import 'package:litura/app.search_book/search_page.dart';
-import 'package:litura/app.user/menu_user_page.dart';
+import 'package:litura/app.user/login_page.dart';
+import 'package:litura/app.user/register_page.dart';
 import 'package:litura/common_widgets/custom_button.dart';
 
-class MenuPage extends StatelessWidget {
-  const MenuPage({Key? key}) : super(key: key);
+class MenuUserPage extends StatelessWidget {
+  const MenuUserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class MenuPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xff806491),
         title: const Text(
-          'Menu',
+          'Compte',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 32.0,
@@ -30,48 +29,25 @@ class MenuPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             CustomButton(
-              text: 'Tous',
+              text: 'Connexion',
               textColor: Colors.white,
               color: const Color(0xff806491),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SearchPage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
               },
               icon: Icons.arrow_forward_ios,
             ),
             const SizedBox(height: 24.0),
             CustomButton(
-              text: 'Ajouter',
+              text: 'Incription',
               textColor: Colors.white,
               color: const Color(0xff806491),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AddArtPage()));
-              },
-              icon: Icons.arrow_forward_ios,
-            ),
-            const SizedBox(height: 24.0),
-            CustomButton(
-              text: 'Supprimer',
-              textColor: Colors.white,
-              color: const Color(0xff806491),
-              onPressed: () {},
-              icon: Icons.arrow_forward_ios,
-            ),
-            const SizedBox(height: 24.0),
-            CustomButton(
-              text: 'Compte',
-              textColor: Colors.white,
-              color: const Color(0xff806491),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MenuUserPage()));
+                        builder: (context) => const RegisterPage()));
               },
               icon: Icons.arrow_forward_ios,
             ),

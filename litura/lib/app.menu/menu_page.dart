@@ -22,7 +22,6 @@ class MenuPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 100.0),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -35,7 +34,7 @@ class MenuPage extends StatelessWidget {
               },
               icon: Icons.arrow_forward_ios,
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 24.0),
             CustomButton(
               text: 'Ajouter',
               textColor: Colors.white,
@@ -44,7 +43,7 @@ class MenuPage extends StatelessWidget {
               },
               icon: Icons.arrow_forward_ios,
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 24.0),
             CustomButton(
               text: 'Supprimer',
               textColor: Colors.white,
@@ -53,7 +52,7 @@ class MenuPage extends StatelessWidget {
               },
               icon: Icons.arrow_forward_ios,
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 24.0),
             CustomButton(
               text: 'Paramètre',
               textColor: Colors.white,

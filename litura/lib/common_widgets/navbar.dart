@@ -23,10 +23,6 @@ class Navbar extends StatelessWidget {
           label: 'Recherche',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.account_circle),
-          label: 'Admin',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.menu),
           label: 'Menu',
         ),

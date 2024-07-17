@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:litura/common_widgets/navbar.dart';
 import 'package:litura/app.home/home_page.dart';
 import 'package:litura/app.menu/menu_page.dart';
-import 'package:litura/app.admin/admin_page.dart';
 import 'package:litura/app.search_book/search_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -16,7 +15,6 @@ class _MainPageState extends State<MainPage> {
   static List<Widget> _pages = <Widget>[
     HomePage(),
     SearchPage(),
-    AdminPage(),
     MenuPage(),
   ];
 
@@ -39,5 +37,3 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
-
-// Vous devez définir les widgets HomePage, SearchPage, ProfilePage, et MenuPage.

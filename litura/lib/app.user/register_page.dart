@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:litura/app.search_book/search_page.dart';
-import 'package:litura/app.user/login_page.dart';
 import 'package:litura/api/api_post.dart';
 
 class RegisterPage extends StatefulWidget {

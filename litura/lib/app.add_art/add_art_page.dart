@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:litura/api/api_post.dart';
 
 class AddArtPage extends StatefulWidget {
@@ -40,11 +38,13 @@ class _AddArtPageState extends State<AddArtPage> {
           formData['loisir_description'],
         );
 
-        if (response != null) {
-          print('Données envoyées avec succès');
-        } else {
-          print('Erreur serveur lors de la création du Loisir');
-        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Oeuvre ajoutée avec succès : ${response.toString()}"),
+          ),
+        );
+        
+        
       } catch (e) {
         print('Erreur: $e');
       }

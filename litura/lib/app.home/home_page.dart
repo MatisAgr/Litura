@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20.0),
               ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: _topLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _topLoisirs[index];
@@ -144,9 +144,6 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'FiraSans',
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
                   ),
                   value: _selectedType,
                   items: _loisirTypes.map((String value) {
@@ -166,7 +163,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20.0),
               ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: _filteredLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _filteredLoisirs[index];

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Posts {
-  static String baseUrl = "http://192.168.227.196:8001";
+  static String baseUrl = "http://192.168.1.39:8001";
 
   static Future<Map<String, dynamic>> createUser(String user_nom, String user_prenom, String user_email, String user_pass, String user_type) async {
     try {

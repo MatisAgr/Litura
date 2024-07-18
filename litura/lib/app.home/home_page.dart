@@ -33,19 +33,31 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Loisir> _loisirs = [];
+  List<Loisir> _topLoisirs = [];
+  List<Loisir> _filteredLoisirs = [];
+  List<String> _loisirTypes = ['manga', 'film', 'serie', 'bande_dessine', 'livre'];
+  String _selectedType = 'manga';
 
   @override
   void initState() {
     super.initState();
-    _fetchLoisirs();
+    _fetchTopLoisirs();
+    _fetchLoisirsType(_selectedType);
   }
 
-  void _fetchLoisirs() async {
+  void _fetchTopLoisirs() async {
     final loisirsData = await Gets.getLoisirTopFive();
     final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {
-      _loisirs = loisirs;
+      _topLoisirs = loisirs;
+    });
+  }
+
+  void _fetchLoisirsType(String type) async {
+    final loisirsData = await Gets.getLoisirTopFiveByType(type); // Assurez-vous que cette méthode existe dans votre API
+    final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
+    setState(() {
+      _filteredLoisirs = loisirs;
     });
   }
 
@@ -68,25 +80,28 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         color: const Color(0xFF2f70AF),
-        child: Column(
-          children: [
-            const SizedBox(height: 20.0),
-            const Center(
-              child: Text(
-                'Top 5 des oeuvres',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20.0),
+              const Center(
+                child: Text(
+                  'Top 5 des œuvres',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20.0),
-            Expanded(
-              child: ListView.separated(
-                itemCount: _loisirs.length,
+              const SizedBox(height: 20.0),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: _topLoisirs.length,
                 itemBuilder: (context, index) {
-                  final loisir = _loisirs[index];
+                  final loisir = _topLoisirs[index];
                   return CustomBookCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
@@ -96,11 +111,55 @@ class _HomePageState extends State<HomePage> {
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 10),
               ),
-            ),
-          ],
+              const SizedBox(height: 20.0),
+              const Center(
+                child: Text(
+                  'Sélectionner un type',
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              Center(
+                child: DropdownButton<String>(
+                  value: _selectedType,
+                  items: _loisirTypes.map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _selectedType = newValue!;
+                      _fetchLoisirsType(_selectedType);
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              ListView.separated(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: _filteredLoisirs.length,
+                itemBuilder: (context, index) {
+                  final loisir = _filteredLoisirs[index];
+                  return CustomBookCard(
+                    imageUrl: loisir.image,
+                    title: loisir.nom,
+                    category: loisir.type,
+                    rating: loisir.note,
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-

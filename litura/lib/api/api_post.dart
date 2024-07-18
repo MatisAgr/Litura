@@ -2,25 +2,23 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Posts {
-  static String baseUrl = "http://localhost:8001";
+  static String baseUrl = "http://192.168.227.196:8001";
 
-  static Future<List> createUser(user_nom, user_prenom, user_email, user_pass, user_type) async {
+  static Future<Map<String, dynamic>> createUser(String user_nom, String user_prenom, String user_email, String user_pass, String user_type) async {
     try {
       var response = await http.post(
         Uri.parse('$baseUrl/user/create'),
         headers: {'Content-Type': 'application/json'},
-        body: json.encode(
-          {
-            'user_nom': user_nom,
-            'user_prenom': user_prenom,
-            'user_email': user_email,
-            'user_pass': user_pass,
-            'user_type': user_type,
-          },
-        ),
+        body: json.encode({
+          'user_nom': user_nom,
+          'user_prenom': user_prenom,
+          'user_email': user_email,
+          'user_pass': user_pass,
+          'user_type': user_type,
+        }),
       );
       if (response.statusCode == 200) {
-        return json.decode(response.body);
+        return json.decode(response.body); // Assurez-vous que ceci retourne un objet JSON
       } else {
         throw Exception('Erreur lors de la création du user');
       }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:litura/app.search_book/search_page.dart';
 import 'package:litura/app.user/login_page.dart';
+import 'package:litura/api/api_post.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -19,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String email = '';
   String password = '';
 
-  void signIn() {
+  Future<void> signIn() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         email = emailController.text;
@@ -27,18 +29,26 @@ class _RegisterPageState extends State<RegisterPage> {
         prenom = prenomController.text;
         password = passwordController.text;
       });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text("Bonjour, $email !"),
-        ),
-      );
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+  
+      try {
+        Map<String, dynamic> user = await Posts.createUser(nom, prenom, email, password, 'user');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Utilisateur créé avec succès : ${user.toString()}"),
+          ),
+        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Erreur lors de la création de l'utilisateur : $e"),
+          ),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Connexion échouée'),
+          content: Text('Inscription échouée'),
         ),
       );
     }

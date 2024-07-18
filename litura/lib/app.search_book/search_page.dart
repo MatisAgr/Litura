@@ -120,6 +120,8 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
                 DropdownButton<String>(
+                  dropdownColor: const Color(0xff806491),
+                  borderRadius: BorderRadius.circular(12),
                   value: _filterType,
                   onChanged: (value) {
                     if (value != null) {
@@ -131,7 +133,11 @@ class _SearchPageState extends State<SearchPage> {
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(value,
+                          style: const TextStyle(
+                            color: Colors.white
+                          )
+                      )
                     );
                   }).toList(),
                 ),

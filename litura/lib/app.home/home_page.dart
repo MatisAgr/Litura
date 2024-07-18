@@ -139,6 +139,8 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20.0),
               Center(
                 child: DropdownButton<String>(
+                  dropdownColor: const Color(0xff806491),
+                  borderRadius: BorderRadius.circular(12),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
@@ -149,7 +151,12 @@ class _HomePageState extends State<HomePage> {
                   items: _loisirTypes.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
-                      child: Text(value),
+                      child: Text(
+                        value,
+                        style: TextStyle(
+                          color: Color(0xffffffff),
+                        ),
+                      ),
                     );
                   }).toList(),
                   onChanged: (String? newValue) {

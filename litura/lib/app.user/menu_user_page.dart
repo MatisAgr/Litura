@@ -29,7 +29,7 @@ class MenuUserPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             CustomButton(
-              text: 'Connexion',
+              text: 'Connexion [NOP]',
               textColor: Colors.white,
               color: const Color(0xff806491),
               onPressed: () {

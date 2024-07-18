@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:litura/common_widgets/custom_text_button.dart';
+import 'package:litura/app.artwork/artwork_page.dart';
+import 'package:intl/intl.dart';
 
 class CustomBookCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String category;
   final double rating;
+  final String date;
 
-  const CustomBookCard({
-    super.key,
-    required this.imageUrl,
-    required this.title,
-    required this.category,
-    required this.rating,
-  });
+  const CustomBookCard(
+      {super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.category,
+      required this.rating,
+      required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,14 @@ class CustomBookCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 30.0),
+                    Text(
+                      "date : ${DateFormat('yyyy-MM-dd').format(DateTime.parse(date))}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontFamily: 'Numans',
+                      ),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -73,33 +85,23 @@ class CustomBookCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            backgroundColor: const Color(0xff2f70af),
-                            minimumSize: const Size(110.0, 40.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                              side: const BorderSide(color: Colors.white),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                'Voir',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Numans',
+                        CustomTextButton(
+                          backgroundColor: const Color(0xff2f70AF),
+                          txt: 'Voir',
+                          iconData: Icons.remove_red_eye,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ArtworkPage(
+                                  imageUrl: imageUrl,
+                                  title: title,
+                                  category: category,
+                                  rating: rating,
                                 ),
                               ),
-                              SizedBox(width: 8),
-                              Icon(
-                                Icons.visibility,
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
                       ],
                     ),

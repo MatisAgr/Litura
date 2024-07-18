@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:litura/app.add_art/add_art_page.dart';
+import 'package:litura/app.delete_art/delete_art_page.dart';
 import 'package:litura/app.search_book/search_page.dart';
 import 'package:litura/app.user/menu_user_page.dart';
 import 'package:litura/common_widgets/custom_button.dart';
@@ -59,7 +60,12 @@ class MenuPage extends StatelessWidget {
               text: 'Supprimer',
               textColor: Colors.white,
               color: const Color(0xff806491),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DeleteArtPage()));
+              },
               icon: Icons.arrow_forward_ios,
             ),
             const SizedBox(height: 24.0),

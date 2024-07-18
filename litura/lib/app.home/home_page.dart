@@ -7,12 +7,14 @@ class Loisir {
   final String nom;
   final String image;
   final double note;
+  final String date;
 
   Loisir({
     required this.type,
     required this.nom,
     required this.image,
     required this.note,
+    required this.date,
   });
 
   factory Loisir.fromJson(Map<String, dynamic> json) {
@@ -21,6 +23,7 @@ class Loisir {
       nom: json['loisir_nom'],
       image: json['loisir_image'],
       note: json['loisir_note'].toDouble(),
+      date: json['createdAt'],
     );
   }
 }
@@ -35,7 +38,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Loisir> _topLoisirs = [];
   List<Loisir> _filteredLoisirs = [];
-  List<String> _loisirTypes = ['manga', 'film', 'serie', 'bande_dessine', 'livre'];
+  List<String> _loisirTypes = [
+    'manga',
+    'film',
+    'serie',
+    'bande_dessine',
+    'livre'
+  ];
   String _selectedType = 'manga';
 
   @override
@@ -47,15 +56,18 @@ class _HomePageState extends State<HomePage> {
 
   void _fetchTopLoisirs() async {
     final loisirsData = await Gets.getLoisirTopFive();
-    final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
+    final loisirs =
+        loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {
       _topLoisirs = loisirs;
     });
   }
 
   void _fetchLoisirsType(String type) async {
-    final loisirsData = await Gets.getLoisirTopFiveByType(type); // Assurez-vous que cette méthode existe dans votre API
-    final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
+    final loisirsData = await Gets.getLoisirTopFiveByType(
+        type); // Assurez-vous que cette méthode existe dans votre API
+    final loisirs =
+        loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {
       _filteredLoisirs = loisirs;
     });
@@ -107,9 +119,11 @@ class _HomePageState extends State<HomePage> {
                     title: loisir.nom,
                     category: loisir.type,
                     rating: loisir.note,
+                    date: loisir.date,
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
               ),
               const SizedBox(height: 20.0),
               const Center(
@@ -161,9 +175,11 @@ class _HomePageState extends State<HomePage> {
                     title: loisir.nom,
                     category: loisir.type,
                     rating: loisir.note,
+                    date: loisir.date,
                   );
                 },
-                separatorBuilder: (context, index) => const SizedBox(height: 10),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
               ),
             ],
           ),

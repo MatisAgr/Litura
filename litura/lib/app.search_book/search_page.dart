@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:litura/api/api_get.dart';
+import 'package:litura/common_widgets/custom_book_card.dart';
 
 class Loisir {
   final String type;
@@ -45,7 +46,8 @@ class _SearchPageState extends State<SearchPage> {
 
   void _fetchLoisirs() async {
     final loisirsData = await Gets.getAllLoisir();
-    final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
+    final loisirs =
+        loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {
       _loisirs = loisirs;
     });
@@ -70,17 +72,18 @@ class _SearchPageState extends State<SearchPage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         color: const Color(0xFF2f70AF),
-        child: ListView.builder(
+        child: ListView.separated(
           itemCount: _loisirs.length,
           itemBuilder: (context, index) {
             final loisir = _loisirs[index];
-            return ListTile(
-              title: Text(loisir.nom, style: const TextStyle(color: Colors.white)),
-              subtitle: Text(loisir.description, style: const TextStyle(color: Colors.white70)),
-              leading: Image.network(loisir.image, width: 50, height: 50),
-              trailing: Text('${loisir.note}/5'),
+            return CustomBookCard(
+              imageUrl: loisir.image,
+              title: loisir.nom,
+              category: loisir.type,
+              rating: loisir.note,
             );
           },
+          separatorBuilder: (context, index) => const SizedBox(height: 10),
         ),
       ),
     );

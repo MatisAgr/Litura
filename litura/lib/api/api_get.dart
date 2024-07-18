@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Gets {
-  static String baseUrl = "http://localhost:8001";
+  static String baseUrl = "http://10.74.1.236:8001";
 
   static Future<List> getAllLoisir() async {
     try {

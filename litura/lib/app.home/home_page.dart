@@ -1,25 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:litura/common_widgets/custom_book_card.dart';
 import 'package:litura/api/api_get.dart';
-import 'package:litura/api/api_post.dart';
+
+class Loisir {
+  final String type;
+  final String nom;
+  final String image;
+  final double note;
+
+  Loisir({
+    required this.type,
+    required this.nom,
+    required this.image,
+    required this.note,
+  });
+
+  factory Loisir.fromJson(Map<String, dynamic> json) {
+    return Loisir(
+      type: json['loisir_type'],
+      nom: json['loisir_nom'],
+      image: json['loisir_image'],
+      note: json['loisir_note'].toDouble(),
+    );
+  }
+}
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<HomePage> {
-  late Future<List> topFiveData;
+  List<Loisir> _loisirs = [];
+
   @override
   void initState() {
     super.initState();
-    topFiveData = Gets.getLoisirTopFive();
+    _fetchLoisirs();
   }
- 
-  Widget build(BuildContext context) 
+
+  void _fetchLoisirs() async {
+    final loisirsData = await Gets.getLoisirTopFive();
+    final loisirs = loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
+    setState(() {
+      _loisirs = loisirs;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff806491),
@@ -37,46 +68,39 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         color: const Color(0xFF2f70AF),
-        child: ListView(
-          children: const <Widget>[
-            Column(
-              children: [
-                SizedBox(height: 20.0),
-                Center(
-                  child: Text(
-                    'Top 5 des oeuvres',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
+        child: Column(
+          children: [
+            const SizedBox(height: 20.0),
+            const Center(
+              child: Text(
+                'Top 5 des oeuvres',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
-              ],
+              ),
             ),
-            SizedBox(height: 20.0),
-            FutureBuilder<List>(
-              future: const topFiveData,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Column(
-                    children: snapshot.data!.map((data) => CustomBookCard(
-                      imageUrl: data['loisir_image'],
-                      title: data['loisir_nom'],
-                      category: data['loisir_type'],
-                      rating: data['loisir_note'],
-                    )).toList(),
+            const SizedBox(height: 20.0),
+            Expanded(
+              child: ListView.separated(
+                itemCount: _loisirs.length,
+                itemBuilder: (context, index) {
+                  final loisir = _loisirs[index];
+                  return CustomBookCard(
+                    imageUrl: loisir.image,
+                    title: loisir.nom,
+                    category: loisir.type,
+                    rating: loisir.note,
                   );
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
-            )
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
 

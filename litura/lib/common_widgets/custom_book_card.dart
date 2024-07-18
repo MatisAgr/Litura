@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:litura/app.artwork/artwork_page.dart';
 
 class CustomBookCard extends StatelessWidget {
   final String imageUrl;
@@ -82,7 +83,19 @@ class CustomBookCard extends StatelessWidget {
                               side: const BorderSide(color: Colors.white),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ArtworkPage(
+                                  imageUrl: imageUrl,
+                                  title: title,
+                                  category: category,
+                                  rating: rating,
+                                ),
+                              ),
+                            );
+                          },
                           child: const Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [

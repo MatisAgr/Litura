@@ -8,6 +8,7 @@ class Loisir {
   final String image;
   final double note;
   final String description;
+  final String date;
 
   Loisir({
     required this.type,
@@ -15,6 +16,7 @@ class Loisir {
     required this.image,
     required this.note,
     required this.description,
+    required this.date,
   });
 
   factory Loisir.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class Loisir {
       image: json['loisir_image'],
       note: json['loisir_note'].toDouble(),
       description: json['loisir_description'],
+      date: json['createdAt'],
     );
   }
 }
@@ -149,6 +152,7 @@ class _SearchPageState extends State<SearchPage> {
                     title: loisir.nom,
                     category: loisir.type,
                     rating: loisir.note,
+                    date: loisir.date,
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 10),

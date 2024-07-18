@@ -8,6 +8,7 @@ class Loisir {
   final String image;
   final double note;
   final String description;
+  final String date;
 
   Loisir({
     required this.type,
@@ -15,6 +16,7 @@ class Loisir {
     required this.image,
     required this.note,
     required this.description,
+    required this.date,
   });
 
   factory Loisir.fromJson(Map<String, dynamic> json) {
@@ -24,6 +26,7 @@ class Loisir {
       image: json['loisir_image'],
       note: json['loisir_note'].toDouble(),
       description: json['loisir_description'],
+      date: json['createdAt'],
     );
   }
 }
@@ -72,6 +75,8 @@ class _SearchPageState extends State<SearchPage> {
       filtered.sort((a, b) => a.nom.compareTo(b.nom));
     } else if (_filterType == 'Catégorie') {
       filtered.sort((a, b) => a.type.compareTo(b.type));
+    } else if (_filterType == 'Date') {
+      filtered.sort((a, b) => a.date.compareTo(b.date));
     }
 
     setState(() {
@@ -122,7 +127,7 @@ class _SearchPageState extends State<SearchPage> {
                       _searchAndFilterLoisirs();
                     }
                   },
-                  items: <String>['Nom', 'Note', 'Catégorie']
+                  items: <String>['Nom', 'Note', 'Catégorie', 'Date']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -149,6 +154,7 @@ class _SearchPageState extends State<SearchPage> {
                     title: loisir.nom,
                     category: loisir.type,
                     rating: loisir.note,
+                    date: loisir.date,
                   );
                 },
                 separatorBuilder: (context, index) => const SizedBox(height: 10),

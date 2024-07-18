@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:litura/common_widgets/custom_text_button.dart';
+import 'package:litura/app.artwork/artwork_page.dart';
 import 'package:intl/intl.dart';
 
 class CustomBookCard extends StatelessWidget {
@@ -88,7 +89,19 @@ class CustomBookCard extends StatelessWidget {
                           backgroundColor: const Color(0xff2f70AF),
                           txt: 'Voir',
                           iconData: Icons.remove_red_eye,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ArtworkPage(
+                                  imageUrl: imageUrl,
+                                  title: title,
+                                  category: category,
+                                  rating: rating,
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),

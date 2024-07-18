@@ -14,6 +14,7 @@ class AddArtPage extends StatefulWidget {
 class _AddArtPageState extends State<AddArtPage> {
   final _formKey = GlobalKey<FormState>();
   String _title = '';
+  String _image = '';
   String _category = '';
   String _description = '';
   double? _rating;
@@ -23,23 +24,26 @@ class _AddArtPageState extends State<AddArtPage> {
       _formKey.currentState?.save();
 
       final Map<String, dynamic> formData = {
-        'title': _title,
-        'category': _category,
-        'description': _description,
-        'rating': _rating,
+        'loisir_type': _category,
+        'loisir_nom': _title,
+        'loisir_image': _image,
+        'loisir_note': _rating,
+        'loisir_description': _description,
       };
 
       try {
-        var response = await http.post(
-          Uri.parse('${Gets.baseUrl}/loisir/create'),
-          headers: {'Content-Type': 'application/json'},
-          body: json.encode(formData),
+        var response = await Posts.createLoisir(
+          formData['loisir_type'],
+          formData['loisir_nom'],
+          formData['loisir_image'],
+          formData['loisir_note'],
+          formData['loisir_description'],
         );
 
-        if (response.statusCode == 200) {
+        if (response != null) {
           print('Données envoyées avec succès');
         } else {
-          print('Erreur serveur: ${response.statusCode}');
+          print('Erreur serveur lors de la création du Loisir');
         }
       } catch (e) {
         print('Erreur: $e');
@@ -130,7 +134,19 @@ class _AddArtPageState extends State<AddArtPage> {
                 validator: (value) {
                   final rating = double.tryParse(value ?? '');
                   if (rating == null || rating < 0 || rating > 5) {
-                    return 'Veuillez entrer une note valide entre 0 et 5';
+                    return 'Note valide entre 0 et 5';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                decoration: InputDecoration(labelText: 'URL de \'image'),
+                onSaved: (value) {
+                  _image = value!;
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Entrer une URL d\'image';
                   }
                   return null;
                 },

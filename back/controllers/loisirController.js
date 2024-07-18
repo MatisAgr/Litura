@@ -38,6 +38,40 @@ const CreateLoisir = async(req, res) => {
         console.error(error);
     }
   }
+
+  const LoisirTopFive = async(req, res) => {
+    try {
+        const loisirs = await Loisir.findAll({
+            order: [
+                ['loisir_note', 'DESC'],
+            ],
+            limit: 5,
+        });
+        res.status(200).json(loisirs);
+    }
+    catch (error) {
+        console.error(error);
+    }
+  }
+
+const LoisirTopFiveByType = async(req, res) => {
+    const { loisir_type } = req.params;
+    try {
+        const loisirs = await Loisir.findAll({
+            where: {
+                loisir_type: loisir_type,
+            },
+            order: [
+                ['loisir_note', 'DESC'],
+            ],
+            limit: 5,
+        });
+        res.status(200).json(loisirs);
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
   
   const DeleteLoisir = async(req, res) => {
     const { id } = req.params;
@@ -84,5 +118,7 @@ const CreateLoisir = async(req, res) => {
     UpdateLoisir,
     DeleteLoisir,
     AllLoisir,
+    LoisirTopFive,
+    LoisirTopFiveByType,
     FindLoisir,
   };

@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:litura/common_widgets/custom_book_card.dart';
+import 'package:litura/api/api_get.dart';
+import 'package:litura/api/api_post.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  _HomePageState createState() => _HomePageState();
+
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<List> topFiveData;
+  @override
+  void initState() {
+    super.initState();
+    topFiveData = Gets.getLoisirTopFive();
+  }
+ 
+  Widget build(BuildContext context) 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff806491),
@@ -41,25 +55,28 @@ class HomePage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            CustomBookCard(
-              imageUrl:
-                  'https://m.media-amazon.com/images/I/710wth0vXZL._AC_UF1000,1000_QL80_.jpg',
-              title: 'Le Petit Prince',
-              category: 'Roman',
-              rating: 4.5,
-            ),
-            SizedBox(height: 20.0),
-            CustomBookCard(
-              imageUrl:
-                  'https://cdn.auchan.fr/media/a2b43fcf-f44c-4462-bc46-ddd4154ec690_2048x2048/B2CD/?format=rw&quality=75&width=1200&height=1200',
-              title: 'Harry Potter',
-              category: 'Fantasy',
-              rating: 4.8,
-            ),
-            SizedBox(height: 20.0),
+            FutureBuilder<List>(
+              future: const topFiveData,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Column(
+                    children: snapshot.data!.map((data) => CustomBookCard(
+                      imageUrl: data['loisir_image'],
+                      title: data['loisir_nom'],
+                      category: data['loisir_type'],
+                      rating: data['loisir_note'],
+                    )).toList(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  return CircularProgressIndicator();
+                }
+              },
+            )
           ],
         ),
       ),
     );
   }
-}
+

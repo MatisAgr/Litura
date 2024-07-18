@@ -37,6 +37,9 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   List<Loisir> _loisirs = [];
+  List<Loisir> _filteredLoisirs = [];
+  String _searchTerm = '';
+  String _filterType = 'Nom'; // Les options sont 'Nom', 'Note', 'Catégorie'
 
   @override
   void initState() {
@@ -50,6 +53,29 @@ class _SearchPageState extends State<SearchPage> {
         loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {
       _loisirs = loisirs;
+      _filteredLoisirs = loisirs;
+    });
+  }
+
+  void _searchAndFilterLoisirs() {
+    List<Loisir> filtered = _loisirs.where((loisir) {
+      final searchTermLower = _searchTerm.toLowerCase();
+      final nomLower = loisir.nom.toLowerCase();
+      final typeLower = loisir.type.toLowerCase();
+      return nomLower.contains(searchTermLower) ||
+          typeLower.contains(searchTermLower);
+    }).toList();
+
+    if (_filterType == 'Note') {
+      filtered.sort((a, b) => b.note.compareTo(a.note));
+    } else if (_filterType == 'Nom') {
+      filtered.sort((a, b) => a.nom.compareTo(b.nom));
+    } else if (_filterType == 'Catégorie') {
+      filtered.sort((a, b) => a.type.compareTo(b.type));
+    }
+
+    setState(() {
+      _filteredLoisirs = filtered;
     });
   }
 
@@ -60,7 +86,6 @@ class _SearchPageState extends State<SearchPage> {
         backgroundColor: const Color(0xff806491),
         title: const Text(
           'Rechercher',
-          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 32.0,
             fontFamily: 'FiraSans',
@@ -68,23 +93,66 @@ class _SearchPageState extends State<SearchPage> {
             color: Colors.white,
           ),
         ),
+        centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(120.0),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  onChanged: (value) {
+                    _searchTerm = value;
+                    _searchAndFilterLoisirs();
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Rechercher...',
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                DropdownButton<String>(
+                  value: _filterType,
+                  onChanged: (value) {
+                    if (value != null) {
+                      _filterType = value;
+                      _searchAndFilterLoisirs();
+                    }
+                  },
+                  items: <String>['Nom', 'Note', 'Catégorie']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         color: const Color(0xFF2f70AF),
-        child: ListView.separated(
-          itemCount: _loisirs.length,
-          itemBuilder: (context, index) {
-            final loisir = _loisirs[index];
-            return CustomBookCard(
-              imageUrl: loisir.image,
-              title: loisir.nom,
-              category: loisir.type,
-              rating: loisir.note,
-            );
-          },
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
-        ),
+        child: _filteredLoisirs.isEmpty
+            ? const Center(child: CircularProgressIndicator())
+            : ListView.separated(
+                itemCount: _filteredLoisirs.length,
+                itemBuilder: (context, index) {
+                  final loisir = _filteredLoisirs[index];
+                  return CustomBookCard(
+                    imageUrl: loisir.image,
+                    title: loisir.nom,
+                    category: loisir.type,
+                    rating: loisir.note,
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
+              ),
       ),
     );
   }

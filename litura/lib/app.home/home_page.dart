@@ -125,6 +125,15 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20.0),
               Center(
                 child: DropdownButton<String>(
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'FiraSans',
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                  ),
                   value: _selectedType,
                   items: _loisirTypes.map((String value) {
                     return DropdownMenuItem<String>(

@@ -75,6 +75,8 @@ class _SearchPageState extends State<SearchPage> {
       filtered.sort((a, b) => a.nom.compareTo(b.nom));
     } else if (_filterType == 'Catégorie') {
       filtered.sort((a, b) => a.type.compareTo(b.type));
+    } else if (_filterType == 'Date') {
+      filtered.sort((a, b) => a.date.compareTo(b.date));
     }
 
     setState(() {
@@ -125,7 +127,7 @@ class _SearchPageState extends State<SearchPage> {
                       _searchAndFilterLoisirs();
                     }
                   },
-                  items: <String>['Nom', 'Note', 'Catégorie']
+                  items: <String>['Nom', 'Note', 'Catégorie', 'Date']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,

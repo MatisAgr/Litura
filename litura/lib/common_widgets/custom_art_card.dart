@@ -7,6 +7,7 @@ class CustomArtCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String category;
+  final String description;  
   final double rating;
   final String date;
 
@@ -15,8 +16,11 @@ class CustomArtCard extends StatelessWidget {
       required this.imageUrl,
       required this.title,
       required this.category,
+      required this.description,
       required this.rating,
-      required this.date});
+      required this.date, 
+      });
+      
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +101,7 @@ class CustomArtCard extends StatelessWidget {
                                   imageUrl: imageUrl,
                                   title: title,
                                   category: category,
+                                  description: description,
                                   rating: rating,
                                 ),
                               ),

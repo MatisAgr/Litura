@@ -148,7 +148,7 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        color: const Color(0xFF2f70AF),
+        color: Colors.black,
         child: _filteredLoisirs.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : ListView.separated(

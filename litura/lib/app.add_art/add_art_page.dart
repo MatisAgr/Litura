@@ -66,98 +66,128 @@ class _AddArtPageState extends State<AddArtPage> {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Titre',
-                      border: OutlineInputBorder(),
-                      hintText: "Email",
+      body: Container(
+        color: Colors.black,
+        child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Titre',
+                        border: OutlineInputBorder(),
+                        hintText: "Email",
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onSaved: (value) {
+                        _title = value!;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Veuillez entrer un titre';
+                        }
+                        return null;
+                      },
                     ),
-                    onSaved: (value) {
-                      _title = value!;
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Veuillez entrer un titre';
-                      }
-                      return null;
-                    },
-                  ),
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(labelText: 'Catégorie'),
-                    items: ['Film', 'Série', 'Roman', 'Manga']
-                        .map((String category) {
-                      return DropdownMenuItem<String>(
-                        value: category,
-                        child: Text(category),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
+                    const SizedBox(height: 20.0),
+                    DropdownButtonFormField<String>(
+                      decoration: const InputDecoration(
+                        labelText: 'Catégorie',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                        ),
+                      items: ['Film', 'Série', 'Roman', 'Manga']
+                          .map((String category) {
+                        return DropdownMenuItem<String>(
+                          value: category,
+                          child: Text(category),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _category = value!;
+                        });
+                      },
+                      onSaved: (value) {
                         _category = value!;
-                      });
-                    },
-                    onSaved: (value) {
-                      _category = value!;
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Veuillez sélectionner une catégorie';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Description'),
-                    onSaved: (value) {
-                      _description = value!;
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Veuillez entrer une description';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Note /5'),
-                    keyboardType: TextInputType.number,
-                    onSaved: (value) {
-                      _rating = double.tryParse(value ?? '');
-                    },
-                    validator: (value) {
-                      final rating = double.tryParse(value ?? '');
-                      if (rating == null || rating < 0 || rating > 5) {
-                        return 'Note valide entre 0 et 5';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFormField(
-                    decoration:
-                        const InputDecoration(labelText: 'URL de \'image'),
-                    onSaved: (value) {
-                      _image = value!;
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Entrer une URL d\'image';
-                      }
-                      return null;
-                    },
-                  ),
-                  CustomTextButton(
-                      backgroundColor: const Color(0xff806491),
-                      txt: 'Ajouter',
-                      iconData: Icons.add,
-                      onPressed: _submitForm),
-                ],
-              ))),
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Veuillez sélectionner une catégorie';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Description',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                        ),
+                      onSaved: (value) {
+                        _description = value!;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Veuillez entrer une description';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Note /5',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.white,
+                        ),
+                      keyboardType: TextInputType.number,
+                      onSaved: (value) {
+                        _rating = double.tryParse(value ?? '');
+                      },
+                      validator: (value) {
+                        final rating = double.tryParse(value ?? '');
+                        if (rating == null || rating < 0 || rating > 5) {
+                          return 'Note valide entre 0 et 5';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    TextFormField(
+                      decoration:
+                          const InputDecoration(
+                            labelText: 'URL de \'image',
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: Colors.white,
+                            ),
+                      onSaved: (value) {
+                        _image = value!;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrer une URL d\'image';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20.0),
+                    CustomTextButton(
+                        backgroundColor: const Color(0xff806491),
+                        txt: 'Ajouter',
+                        iconData: Icons.add,
+                        onPressed: _submitForm),
+                  ],
+                ))),
+      ),
     );
   }
 }

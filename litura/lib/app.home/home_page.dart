@@ -80,10 +80,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff806491),
-        title: const Text(
+      backgroundColor: const Color(0xff806491),
+      title: Center(
+        child: Text(
           'Litura',
-          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 32.0,
             fontFamily: 'FiraSans',
@@ -92,9 +92,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        color: const Color(0xFF2f70AF),
+        color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

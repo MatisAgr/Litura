@@ -21,7 +21,7 @@ class CustomTextButton extends StatelessWidget {
 		backgroundColor: backgroundColor,
 		minimumSize: const Size(110.0, 40.0),
 		shape: RoundedRectangleBorder(
-		  borderRadius: BorderRadius.circular(20.0),
+		  borderRadius: BorderRadius.circular(5.0),
 		  side: const BorderSide(color: Colors.white),
 		),
 	  ),

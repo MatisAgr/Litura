@@ -25,13 +25,16 @@ class CustomArtCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color(0xffb9848c),
+      color: const Color(0xFF2f70AF),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5.0),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(5.0),
               child: Image.network(
                 imageUrl,
                 width: 100,
@@ -90,7 +93,7 @@ class CustomArtCard extends StatelessWidget {
                           ],
                         ),
                         CustomTextButton(
-                          backgroundColor: const Color(0xff2f70AF),
+                          backgroundColor: const Color(0xffb9848c),
                           txt: 'Voir',
                           iconData: Icons.remove_red_eye,
                           onPressed: () {

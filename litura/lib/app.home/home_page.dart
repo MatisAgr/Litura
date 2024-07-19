@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:litura/common_widgets/custom_book_card.dart';
+import 'package:litura/common_widgets/custom_art_card.dart';
 import 'package:litura/api/api_get.dart';
 
 class Loisir {

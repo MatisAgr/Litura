@@ -155,7 +155,7 @@ class _SearchPageState extends State<SearchPage> {
                 itemCount: _filteredLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _filteredLoisirs[index];
-                  return CustomBookCard(
+                  return CustomArtCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,

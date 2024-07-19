@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: _topLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _topLoisirs[index];
-                  return CustomBookCard(
+                  return CustomArtCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: _filteredLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _filteredLoisirs[index];
-                  return CustomBookCard(
+                  return CustomArtCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,

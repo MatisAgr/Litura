@@ -3,14 +3,14 @@ import 'package:litura/common_widgets/custom_text_button.dart';
 import 'package:litura/app.artwork/artwork_page.dart';
 import 'package:intl/intl.dart';
 
-class CustomBookCard extends StatelessWidget {
+class CustomArtCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String category;
   final double rating;
   final String date;
 
-  const CustomBookCard(
+  const CustomArtCard(
       {super.key,
       required this.imageUrl,
       required this.title,

@@ -159,6 +159,7 @@ class _SearchPageState extends State<SearchPage> {
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,
+                    description: loisir.description,
                     rating: loisir.note,
                     date: loisir.date,
                   );

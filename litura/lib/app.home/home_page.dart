@@ -7,6 +7,7 @@ class Loisir {
   final String nom;
   final String image;
   final double note;
+  final String description;
   final String date;
 
   Loisir({
@@ -14,6 +15,7 @@ class Loisir {
     required this.nom,
     required this.image,
     required this.note,
+    required this.description,
     required this.date,
   });
 
@@ -23,6 +25,7 @@ class Loisir {
       nom: json['loisir_nom'],
       image: json['loisir_image'],
       note: json['loisir_note'].toDouble(),
+      description: json['loisir_description'],
       date: json['createdAt'],
     );
   }
@@ -118,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,
+                    description: loisir.description,
                     rating: loisir.note,
                     date: loisir.date,
                   );
@@ -178,6 +182,7 @@ class _HomePageState extends State<HomePage> {
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,
+                    description: loisir.description,
                     rating: loisir.note,
                     date: loisir.date,
                   );

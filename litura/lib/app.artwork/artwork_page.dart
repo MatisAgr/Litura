@@ -7,6 +7,7 @@ class ArtworkPage extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String category;
+  final String description;
   final double rating;
 
   const ArtworkPage({
@@ -14,6 +15,7 @@ class ArtworkPage extends StatelessWidget {
     required this.imageUrl,
     required this.title,
     required this.category,
+    required this.description,
     required this.rating,
   });
 
@@ -21,7 +23,17 @@ class ArtworkPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        backgroundColor: const Color(0xff806491),
+        title: const Text(
+          'L\'Oeuvre',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 32.0,
+            fontFamily: 'FiraSans',
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Container(
         color: const Color(0xFF2f70AF),
@@ -52,6 +64,15 @@ class ArtworkPage extends StatelessWidget {
               const SizedBox(height: 8.0),
               Text(
                 category,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Text(
+                description,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 18.0,

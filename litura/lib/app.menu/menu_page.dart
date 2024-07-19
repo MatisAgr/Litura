@@ -12,10 +12,10 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff806491),
-        title: const Text(
+      backgroundColor: const Color(0xff806491),
+      title: Center(
+        child: Text(
           'Menu',
-          textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 32.0,
             fontFamily: 'FiraSans',
@@ -24,6 +24,7 @@ class MenuPage extends StatelessWidget {
           ),
         ),
       ),
+    ),
       body: Container(
         color: Colors.black,
         child: Padding(

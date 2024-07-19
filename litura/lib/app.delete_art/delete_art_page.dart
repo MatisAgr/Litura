@@ -23,7 +23,6 @@ class _DeleteArtPageState extends State<DeleteArtPage> {
   Future<void> _fetchLoisirs() async {
     try {
       var loisirs = await Gets.getAllLoisir();
-      print(loisirs); // Ajoutez cette ligne pour vérifier la réponse de l'API
       if (loisirs.isNotEmpty &&
           loisirs[0] is Map &&
           loisirs[0].containsKey('loisir_nom')) {
@@ -54,44 +53,60 @@ class _DeleteArtPageState extends State<DeleteArtPage> {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  DropdownButton<String>(
-                    value: _selectedLoisir,
-                    hint: const Text('Sélectionnez un loisir'),
-                    items: _loisirs.map<DropdownMenuItem<String>>((loisir) {
-                      return DropdownMenuItem<String>(
-                        value: loisir['loisir_nom'],
-                        child: SizedBox(
-                          width: 300,
-                          child: Text(
-                            loisir['loisir_nom'],
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontFamily: 'Numans',
-                            ),
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedLoisir = value;
-                      });
-                    },
+      body: Container(
+        color: Colors.black,
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                child: DropdownButtonFormField<String>(
+                  value: _selectedLoisir,
+                  isExpanded: true,
+                  decoration: const InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    ),
                   ),
-                  CustomTextButton(
-                      backgroundColor: const Color(0xff806491),
-                      txt: 'Supprimer',
-                      iconData: Icons.delete,
-                      onPressed: () {}),
-                ],
-              ))),
+                  hint: const Text('Sélectionnez un loisir'),
+                  items: _loisirs.map<DropdownMenuItem<String>>((loisir) {
+                    return DropdownMenuItem<String>(
+                      value: loisir['loisir_nom'],
+                      child: Text(
+                        loisir['loisir_nom'],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                          fontFamily: 'Numans',
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedLoisir = value;
+                    });
+                  },
+                  icon: const Icon(Icons.arrow_drop_down, color: Colors.black),
+                  iconSize: 24,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              CustomTextButton(
+                backgroundColor: const Color(0xff806491),
+                txt: 'Supprimer',
+                iconData: Icons.delete,
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

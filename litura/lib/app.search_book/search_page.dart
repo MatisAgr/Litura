@@ -135,7 +135,8 @@ class _SearchPageState extends State<SearchPage> {
                       value: value,
                       child: Text(value,
                           style: const TextStyle(
-                            color: Colors.white
+                            color: Colors.white,
+                            fontFamily: 'Numans',
                           )
                       )
                     );

@@ -52,59 +52,67 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
+        body: Container(
+          color: Colors.black,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
+                    ),
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Email",
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un email';
+                      }
+                      return null;
+                    },
                   ),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Email",
+                  const SizedBox(
+                    height: 10,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
+                    ),
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Mot de passe",
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un mot de passe';
+                      }
+                      return null;
+                    },
                   ),
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Mot de passe",
+                  const SizedBox(
+                    height: 10,
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un mot de passe';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomTextButton(
-                  backgroundColor: const Color(0xff2f70AF),
-                  txt: 'Connexion',
-                  iconData: Icons.login,
-                  onPressed: signIn,
-                )
-              ],
+                  CustomTextButton(
+                    backgroundColor: const Color(0xff2f70AF),
+                    txt: 'Connexion',
+                    iconData: Icons.login,
+                    onPressed: signIn,
+                  )
+                ],
+              ),
             ),
           ),
         ));

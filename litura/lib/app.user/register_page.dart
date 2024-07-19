@@ -72,137 +72,149 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
-                  ),
-                  controller: nomController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xff806491),
-                        width: 2.0,
-                      ),
+        body: Container(
+          color: Colors.black,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey, // Couleur des bords par défaut
-                        width: 1.0,
+                    controller: nomController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xff806491),
+                          width: 2.0,
+                        ),
                       ),
-                    ),
-                    hintText: "Nom",
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un nom';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
-                  ),
-                  controller: prenomController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xff806491),
-                        width: 2.0,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey, // Couleur des bords par défaut
+                          width: 1.0,
+                        ),
                       ),
+                      hintText: "Nom",
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey, // Couleur des bords par défaut
-                        width: 1.0,
-                      ),
-                    ),
-                    hintText: "Prénom",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un nom';
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un prénom';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
-                  ),
-                  controller: emailController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xff806491),
-                        width: 2.0,
-                      ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey, // Couleur des bords par défaut
-                        width: 1.0,
+                    controller: prenomController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xff806491),
+                          width: 2.0,
+                        ),
                       ),
-                    ),
-                    hintText: "Email",
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un email';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
-                TextFormField(
-                  style: const TextStyle(
-                    fontFamily: 'Numans',
-                  ),
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xff806491),
-                        width: 2.0,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey, // Couleur des bords par défaut
+                          width: 1.0,
+                        ),
                       ),
+                      hintText: "Prénom",
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Colors.grey, // Couleur des bords par défaut
-                        width: 1.0,
-                      ),
-                    ),
-                    hintText: "Mot de passe",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un prénom';
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Veuillez rentrer un mot de passe';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
-                CustomTextButton(
-                  backgroundColor: const Color(0xff2f70AF),
-                  txt: 'Inscription',
-                  iconData: Icons.login,
-                  onPressed: registerIn,
-                )
-              ],
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
+                    ),
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xff806491),
+                          width: 2.0,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
+                      hintText: "Email",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un email';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  TextFormField(
+                    style: const TextStyle(
+                      fontFamily: 'Numans',
+                    ),
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      filled: true,
+                      fillColor: Colors.white,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xff806491),
+                          width: 2.0,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                      ),
+                      hintText: "Mot de passe",
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez rentrer un mot de passe';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  CustomTextButton(
+                    backgroundColor: const Color(0xff2f70AF),
+                    txt: 'Inscription',
+                    iconData: Icons.login,
+                    onPressed: registerIn,
+                  )
+                ],
+              ),
             ),
           ),
         ));

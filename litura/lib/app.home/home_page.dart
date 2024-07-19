@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:litura/common_widgets/custom_book_card.dart';
+import 'package:litura/common_widgets/custom_art_card.dart';
 import 'package:litura/api/api_get.dart';
 
 class Loisir {
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: _topLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _topLoisirs[index];
-                  return CustomBookCard(
+                  return CustomArtCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,
@@ -174,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: _filteredLoisirs.length,
                 itemBuilder: (context, index) {
                   final loisir = _filteredLoisirs[index];
-                  return CustomBookCard(
+                  return CustomArtCard(
                     imageUrl: loisir.image,
                     title: loisir.nom,
                     category: loisir.type,

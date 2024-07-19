@@ -42,7 +42,7 @@ class _SearchPageState extends State<SearchPage> {
   List<Loisir> _loisirs = [];
   List<Loisir> _filteredLoisirs = [];
   String _searchTerm = '';
-  String _filterType = 'Nom'; // Les options sont 'Nom', 'Note', 'Catégorie'
+  String _filterType = 'Nom';
 
   @override
   void initState() {

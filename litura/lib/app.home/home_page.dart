@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 
   void _fetchLoisirsType(String type) async {
     final loisirsData = await Gets.getLoisirTopFiveByType(
-        type); // Assurez-vous que cette méthode existe dans votre API
+        type); 
     final loisirs =
         loisirsData.map<Loisir>((json) => Loisir.fromJson(json)).toList();
     setState(() {

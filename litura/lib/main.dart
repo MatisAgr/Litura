@@ -15,14 +15,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Mon app de fou',
       theme: ThemeData(
-        // primaryColor: Colors.orange,
       ),
-      home: MainPage(), // Utilisez MainScreen comme nouvelle page d'accueil
+      home: MainPage(),
     );
   }
 }
 
-// Un nouveau widget qui contient votre Navbar et peut afficher différents écrans
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 

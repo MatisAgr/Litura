@@ -23,13 +23,15 @@ class ArtworkPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Padding(
+      body: Container(
+        color: const Color(0xFF2f70AF),
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: ClipRRect(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.network(
                   imageUrl,
@@ -37,45 +39,52 @@ class ArtworkPage extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            Text(
-              title,
-              style: const TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              category,
-              style: const TextStyle(
-                fontSize: 18.0,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              children: [
-                const Text(
-                  'Rating:',
-                  style: TextStyle(fontSize: 18.0),
+              const SizedBox(height: 16.0),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
-                const SizedBox(width: 8.0),
-                Text(
-                  rating.toString(),
-                  style: const TextStyle(
-                    fontSize: 18.0,
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                category,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Rating:',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(width: 8.0),
+                  Text(
+                    rating.toString(),
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.amber,
+                    ),
+                  ),
+                  const Icon(
+                    Icons.star,
                     color: Colors.amber,
                   ),
-                ),
-                const Icon(
-                  Icons.star,
-                  color: Colors.amber,
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
